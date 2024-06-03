@@ -4,7 +4,11 @@ import { redirect } from "next/navigation";
 import TopNavBar from "../components/TopNavBar";
 import SideNavBar from "../components/SideNavBar";
 
-export default async function ({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const session = await getServerSession();
 
   if (!session || !session.user) {
