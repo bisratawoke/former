@@ -3,19 +3,18 @@ import { signOut, useSession } from "next-auth/react";
 import {
   Avatar,
   Box,
-  Button,
   ListItemIcon,
   ListItemText,
   Menu,
   MenuItem,
   Stack,
-  Tooltip,
   Typography,
 } from "@mui/material";
-import { BiSolidUserAccount, BiUser } from "react-icons/bi";
+import { BiUser } from "react-icons/bi";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { LogoutOutlined } from "@mui/icons-material";
+
 export default function UserIconToolTip() {
   const { data: session } = useSession();
   const anchorEle = useRef<any>(null);
@@ -41,7 +40,6 @@ export default function UserIconToolTip() {
         anchorEl={anchorEle.current}
         open={open}
         onClose={() => setOpen(false)}
-        sx={{}}
       >
         <MenuItem
           onClick={() => {
