@@ -2,6 +2,7 @@ import NextAuth from "next-auth/next";
 import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
+
 export const authOptions = {
   providers: [
     Credentials({
@@ -34,5 +35,4 @@ export const authOptions = {
 };
 
 export const AuthHandler = NextAuth(authOptions);
-
 export { AuthHandler as GET, AuthHandler as POST };
