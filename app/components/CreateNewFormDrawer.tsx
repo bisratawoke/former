@@ -1,6 +1,9 @@
-import { Drawer, Typography } from "@mui/material";
+import { Drawer, Grid, Typography } from "@mui/material";
 import { useContext } from "react";
 import { Context } from "../dashboard/forms/layout";
+import { Formik } from "formik";
+import FormTextField from "@/app/components/FormTextField";
+import * as yup from "yup";
 export default function CreateNewFormDrawer() {
   const { createFormDrawerOpen, setCreateFormDrawerOpen } = useContext(Context);
   return (
@@ -12,7 +15,24 @@ export default function CreateNewFormDrawer() {
         sx: { width: "40%" },
       }}
     >
-      <Typography>Create New Form</Typography>
+      <Formik
+        initialValues={{}}
+        validationSchema={yup.object({})}
+        onSubmit={async function (values) {
+          console.log(values);
+        }}
+      >
+        {({ handleSubmit, isSubmitting }) => (
+          <Grid container>
+            <Grid item md={6}>
+              <FormTextField name="" label="" />
+            </Grid>
+            <Grid item md={6}>
+              <FormTextField name="" label="" />
+            </Grid>
+          </Grid>
+        )}
+      </Formik>
     </Drawer>
   );
 }

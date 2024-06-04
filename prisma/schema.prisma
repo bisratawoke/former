@@ -18,17 +18,24 @@ model form {
   id String @id @default(uuid())
   name String 
   decription String
+  status  STATUS @default(ACTIVE)
+  formField formField[]
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
 
 
+
+
 model formField {
   id String @id @default(uuid())
   type FORM_FIELD_TYPE
-  question String
+  label String 
   choices choice[]
   correct_answer String
+  answer answer[]
+  form form @relation(fields:[formId],references:[id])
+  formId String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
@@ -43,6 +50,17 @@ model choice {
   updatedAt DateTime @default(now())
 }
 
+model answer {
+  id String @id @default(uuid())
+  formFieldType FORM_FIELD_TYPE
+  content String
+  formField formField @relation(fields: [formFieldId],references: [id])
+  formFieldId String
+
+
+}
+
+
 
 
 enum FORM_FIELD_TYPE {
@@ -52,3 +70,8 @@ enum FORM_FIELD_TYPE {
   TEXT_AREA
   RANGE
 }
+
+enum STATUS {
+  ACTIVE
+  ENACTIVE
+} 
